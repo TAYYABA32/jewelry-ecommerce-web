@@ -1,0 +1,117 @@
+import { Show, UserButton } from "@clerk/nextjs";
+import { ChevronDown, Heart, Search, ShoppingBag, User } from "lucide-react";
+import Link from "next/link";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Logo } from "@/components/layout/logo";
+import { MobileNav } from "@/components/layout/mobile-nav";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { MAIN_NAV } from "@/constants/nav";
+
+// Cart/wishlist counts are static placeholders until those features
+// (with real client-side state) are built in a later step.
+export function Header() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-2">
+          <MobileNav />
+          <Logo />
+        </div>
+
+        <nav className="hidden items-center gap-8 lg:flex">
+          {MAIN_NAV.map((item) =>
+            "children" in item && item.children ? (
+              <DropdownMenu key={item.href}>
+                <DropdownMenuTrigger
+                  render={
+                    <button className="flex items-center gap-1 text-sm font-medium text-foreground/80 transition-colors hover:text-primary">
+                      {item.label}
+                      <ChevronDown className="size-3.5" />
+                    </button>
+                  }
+                />
+                <DropdownMenuContent align="start">
+                  {item.children.map((child) => (
+                    <DropdownMenuItem
+                      key={child.href}
+                      render={<Link href={child.href}>{child.label}</Link>}
+                    />
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
+        </nav>
+
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Search"
+            render={
+              <Link href="/shop">
+                <Search className="size-5" />
+              </Link>
+            }
+          />
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Wishlist"
+            render={
+              <Link href="/wishlist">
+                <Heart className="size-5" />
+              </Link>
+            }
+          />
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Cart"
+            className="relative"
+            render={
+              <Link href="/cart">
+                <ShoppingBag className="size-5" />
+                <Badge className="absolute -top-1 -right-1 size-4 justify-center rounded-full p-0 text-[10px]">
+                  0
+                </Badge>
+              </Link>
+            }
+          />
+          <ThemeToggle />
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
+          <Show when="signed-out">
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Sign in"
+              render={
+                <Link href="/login">
+                  <User className="size-5" />
+                </Link>
+              }
+            />
+          </Show>
+        </div>
+      </div>
+    </header>
+  );
+}
