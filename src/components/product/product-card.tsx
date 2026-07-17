@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { WishlistButton } from "@/components/product/wishlist-button";
 import { StarRating } from "@/components/shared/star-rating";
+import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 import type { ProductCardData } from "@/types/product";
 import { formatPrice } from "@/utils/format-price";
 
@@ -28,6 +29,13 @@ export function ProductCard({ product }: { product: ProductCardData }) {
           />
         ) : null}
         <WishlistButton productName={product.name} />
+        <AddToCartButton
+          productId={product.id}
+          slug={product.slug}
+          name={product.name}
+          image={primaryImage?.url ?? ""}
+          price={Number(hasDiscount ? product.discountPrice! : product.price)}
+        />
         {hasDiscount ? (
           <span className="absolute top-3 left-3 border border-primary/50 bg-secondary/95 px-2.5 py-1 text-[10px] font-medium tracking-[0.15em] text-primary uppercase">
             {discountPercent}% Off

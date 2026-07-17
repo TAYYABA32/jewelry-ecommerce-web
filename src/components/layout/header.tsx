@@ -1,8 +1,7 @@
 import { Show, UserButton } from "@clerk/nextjs";
-import { ChevronDown, Heart, Search, ShoppingBag } from "lucide-react";
+import { ChevronDown, Heart, Search } from "lucide-react";
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,13 +9,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { CartButton } from "@/features/cart/components/cart-button";
 import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { MAIN_NAV } from "@/constants/nav";
 
-// Cart/wishlist counts are static placeholders until those features
-// (with real client-side state) are built in a later step.
+// Wishlist count is still a visual-only placeholder until that
+// feature (with real client-side state) is built in a later step.
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -80,20 +80,7 @@ export function Header() {
               </Link>
             }
           />
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Cart"
-            className="relative"
-            render={
-              <Link href="/cart">
-                <ShoppingBag className="size-5" />
-                <Badge className="absolute -top-1 -right-1 size-4 justify-center rounded-full p-0 text-[10px]">
-                  0
-                </Badge>
-              </Link>
-            }
-          />
+          <CartButton />
           <ThemeToggle />
           <Show when="signed-in">
             <UserButton />
