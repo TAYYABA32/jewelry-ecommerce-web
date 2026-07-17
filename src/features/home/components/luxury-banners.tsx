@@ -8,7 +8,7 @@ const BANNERS = [
     href: "/shop?occasion=engagement",
     cta: "Shop Bridal",
     image:
-      "https://images.unsplash.com/photo-1724937798320-d0c4fac1787d?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1200&q=80&auto=format&fit=crop",
   },
   {
     title: "Gifts That Last",
@@ -16,7 +16,7 @@ const BANNERS = [
     href: "/shop?filter=best-sellers",
     cta: "Shop Gifts",
     image:
-      "https://images.unsplash.com/photo-1513885045260-6b3086b24c17?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1545844568-98bb15133ec0?w=1200&q=80&auto=format&fit=crop",
   },
 ] as const;
 
@@ -28,7 +28,7 @@ export function LuxuryBanners() {
           <Link
             key={banner.title}
             href={banner.href}
-            className="group relative flex aspect-4/5 items-end overflow-hidden rounded-lg sm:aspect-3/4"
+            className="group relative flex aspect-4/5 items-end overflow-hidden rounded-2xl sm:aspect-3/4 sm:rounded-3xl"
           >
             <Image
               src={banner.image}

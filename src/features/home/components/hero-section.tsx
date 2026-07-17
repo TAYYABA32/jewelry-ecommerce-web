@@ -11,12 +11,12 @@ export function HeroSection() {
     <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
       <div className="relative flex h-[80vh] min-h-[520px] items-center overflow-hidden rounded-2xl bg-secondary sm:rounded-3xl">
         <Image
-          src="https://images.unsplash.com/photo-1652934384700-d36531a52179?w=1800&q=80&auto=format&fit=crop"
-          alt="An elegant couple in formal black-tie attire sharing a romantic moment"
+          src="/images/hero-bridal.jpg"
+          alt="A traditional South Asian bride wearing heavy red and gold bridal jewelry"
           fill
           priority
           sizes="(min-width: 1280px) 1280px, 100vw"
-          className="object-cover"
+          className="object-cover object-[50%_38%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
