@@ -23,7 +23,7 @@ export async function FeaturedCollections() {
         {categories.map((category) => (
           <Link
             key={category.id}
-            href={`/categories/${category.slug}`}
+            href={`/shop?category=${category.slug}`}
             className="group relative flex aspect-square items-end overflow-hidden rounded-lg"
           >
             {category.imageUrl ? (
