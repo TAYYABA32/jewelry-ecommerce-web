@@ -8,7 +8,7 @@ const BANNERS = [
     href: "/shop?occasion=engagement",
     cta: "Shop Bridal",
     image:
-      "https://images.unsplash.com/photo-1511314766704-a02a2356d128?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1724937798320-d0c4fac1787d?w=1200&q=80&auto=format&fit=crop",
   },
   {
     title: "Gifts That Last",
@@ -16,7 +16,7 @@ const BANNERS = [
     href: "/shop?filter=best-sellers",
     cta: "Shop Gifts",
     image:
-      "https://images.unsplash.com/photo-1619545648753-cf664cbbe97a?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1513885045260-6b3086b24c17?w=1200&q=80&auto=format&fit=crop",
   },
 ] as const;
 
