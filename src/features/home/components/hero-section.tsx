@@ -10,8 +10,8 @@ export function HeroSection() {
   return (
     <section className="relative flex h-[85vh] min-h-[560px] items-center overflow-hidden bg-secondary">
       <Image
-        src="https://picsum.photos/seed/aurelia-hero/1800/1200"
-        alt="A model wearing a diamond necklace and earrings"
+        src="https://images.unsplash.com/photo-1665159882377-385d68d2bdff?w=1800&q=80&auto=format&fit=crop"
+        alt="Diamond chandelier earrings"
         fill
         priority
         sizes="100vw"

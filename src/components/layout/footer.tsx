@@ -14,10 +14,10 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-muted">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+        <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
+          <div className="shrink-0 lg:max-w-xs">
             <Logo />
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
+            <p className="mt-4 text-sm text-muted-foreground">
               {SITE_DESCRIPTION}
             </p>
             <div className="mt-4 flex items-center gap-3">
@@ -38,25 +38,27 @@ export function Footer() {
             </div>
           </div>
 
-          {FOOTER_NAV.map((column) => (
-            <div key={column.title}>
-              <h3 className="font-heading text-sm font-semibold text-foreground">
-                {column.title}
-              </h3>
-              <ul className="mt-4 space-y-2">
-                {column.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:flex lg:gap-16">
+            {FOOTER_NAV.map((column) => (
+              <div key={column.title}>
+                <h3 className="font-heading text-sm font-semibold text-foreground">
+                  {column.title}
+                </h3>
+                <ul className="mt-4 space-y-2">
+                  {column.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">

@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
       // photography is uploaded via the admin (Supabase Storage).
       {
         protocol: "https",
-        hostname: "picsum.photos",
+        hostname: "images.unsplash.com",
       },
     ],
   },

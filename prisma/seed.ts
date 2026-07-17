@@ -7,8 +7,11 @@ import { PrismaClient } from "../src/generated/prisma";
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 
-function image(seed: string) {
-  return `https://picsum.photos/seed/${seed}/1000/1200`;
+// Real, hand-verified Unsplash photos (id -> actual jewelry, checked
+// visually — not random stock photos). These are seed/dev placeholders;
+// swap for real product photography via the admin upload flow later.
+function unsplash(photoId: string) {
+  return `https://images.unsplash.com/photo-${photoId}?w=1200&q=80&auto=format&fit=crop`;
 }
 
 const CATEGORIES = [
@@ -16,28 +19,28 @@ const CATEGORIES = [
     slug: "rings",
     name: "Rings",
     description: "Engagement, wedding, and statement rings.",
-    imageUrl: image("aurelia-rings"),
+    imageUrl: unsplash("1603561591411-07134e71a2a9"),
     position: 1,
   },
   {
     slug: "necklaces",
     name: "Necklaces",
     description: "Pendants, chains, and tennis necklaces.",
-    imageUrl: image("aurelia-necklaces"),
+    imageUrl: unsplash("1601121141461-9d6647bca1ed"),
     position: 2,
   },
   {
     slug: "earrings",
     name: "Earrings",
     description: "Studs, hoops, and drop earrings.",
-    imageUrl: image("aurelia-earrings"),
+    imageUrl: unsplash("1629224316810-9d8805b95e76"),
     position: 3,
   },
   {
     slug: "bracelets",
     name: "Bracelets",
     description: "Tennis bracelets, bangles, and chains.",
-    imageUrl: image("aurelia-bracelets"),
+    imageUrl: unsplash("1602173574767-37ac01994b2a"),
     position: 4,
   },
 ] as const;
@@ -47,6 +50,7 @@ const PRODUCTS = [
     slug: "eternal-solitaire-diamond-ring",
     sku: "RNG-001",
     category: "rings",
+    images: ["1605100804763-247f67b3557e", "1543294001-f7cd5d7fb516"],
     name: "Eternal Solitaire Diamond Ring",
     shortDescription: "A timeless solitaire set in platinum.",
     description:
@@ -68,6 +72,7 @@ const PRODUCTS = [
     slug: "classic-gold-band-ring",
     sku: "RNG-002",
     category: "rings",
+    images: ["1605100804567-1ffe942b5cd6", "1598560917807-1bae44bd2be8"],
     name: "Classic Gold Band Ring",
     shortDescription: "A refined 18K gold wedding band.",
     description:
@@ -86,6 +91,7 @@ const PRODUCTS = [
     slug: "vintage-halo-sapphire-ring",
     sku: "RNG-003",
     category: "rings",
+    images: ["1719924998065-0c60e329ef58", "1607703829739-c05b7beddf60"],
     name: "Vintage Halo Sapphire Ring",
     shortDescription: "A blue sapphire framed in a diamond halo.",
     description:
@@ -106,6 +112,7 @@ const PRODUCTS = [
     slug: "diamond-tennis-necklace",
     sku: "NCK-001",
     category: "necklaces",
+    images: ["1620656798579-1984d9e87df7", "1722410180687-b05b50922362"],
     name: "Diamond Tennis Necklace",
     shortDescription: "A continuous line of brilliant diamonds.",
     description:
@@ -125,6 +132,7 @@ const PRODUCTS = [
     slug: "rose-gold-pendant-necklace",
     sku: "NCK-002",
     category: "necklaces",
+    images: ["1685970731194-e27b477e87ba", "1611583027838-515a1087afdb"],
     name: "Rose Gold Pendant Necklace",
     shortDescription: "A delicate diamond pendant in rose gold.",
     description:
@@ -145,6 +153,7 @@ const PRODUCTS = [
     slug: "pearl-strand-necklace",
     sku: "NCK-003",
     category: "necklaces",
+    images: ["1595345705177-ffe090eb0784", "1515562141207-7a88fb7ce338"],
     name: "Pearl Strand Necklace",
     shortDescription: "Freshwater pearls on a silver chain.",
     description:
@@ -164,6 +173,7 @@ const PRODUCTS = [
     slug: "diamond-stud-earrings",
     sku: "ERG-001",
     category: "earrings",
+    images: ["1693212793204-bcea856c75fe", "1615197419962-90f21da0956d"],
     name: "Diamond Stud Earrings",
     shortDescription: "Classic brilliant-cut studs.",
     description:
@@ -184,6 +194,7 @@ const PRODUCTS = [
     slug: "emerald-drop-earrings",
     sku: "ERG-002",
     category: "earrings",
+    images: ["1535632787350-4e68ef0ac584", "1674329042475-de1a95b4ca62"],
     name: "Emerald Drop Earrings",
     shortDescription: "Colombian emeralds in a modern drop.",
     description:
@@ -203,6 +214,7 @@ const PRODUCTS = [
     slug: "gold-hoop-earrings",
     sku: "ERG-003",
     category: "earrings",
+    images: ["1638854254875-a2416fe0fec2", "1638854254875-a2416fe0fec2"],
     name: "Gold Hoop Earrings",
     shortDescription: "Polished 18K gold hoops.",
     description:
@@ -222,6 +234,7 @@ const PRODUCTS = [
     slug: "diamond-tennis-bracelet",
     sku: "BRC-001",
     category: "bracelets",
+    images: ["1633810543462-77c4a3b13f07", "1728646998199-127b357a464d"],
     name: "Diamond Tennis Bracelet",
     shortDescription: "A continuous line of diamonds.",
     description:
@@ -242,6 +255,7 @@ const PRODUCTS = [
     slug: "rose-gold-chain-bracelet",
     sku: "BRC-002",
     category: "bracelets",
+    images: ["1721206624492-3d05631471ea", "1689367436442-76c859315008"],
     name: "Rose Gold Chain Bracelet",
     shortDescription: "A fine link chain in rose gold.",
     description:
@@ -261,6 +275,7 @@ const PRODUCTS = [
     slug: "sapphire-bangle",
     sku: "BRC-003",
     category: "bracelets",
+    images: ["1679156271456-d6068c543ee7", "1679156271456-d6068c543ee7"],
     name: "Sapphire Bangle",
     shortDescription: "A hinged bangle set with sapphires.",
     description:
@@ -293,7 +308,7 @@ async function main() {
 
   console.log("Seeding products...");
   for (const product of PRODUCTS) {
-    const { category, ...data } = product;
+    const { category, images, ...data } = product;
     const categoryId = categoryIdBySlug.get(category);
     if (!categoryId) throw new Error(`Unknown category: ${category}`);
 
@@ -303,27 +318,17 @@ async function main() {
       create: { ...data, categoryId },
     });
 
-    const existingImages = await prisma.productImage.count({
-      where: { productId: record.id },
+    // Replace images every run so corrected/updated photo IDs always win.
+    await prisma.productImage.deleteMany({ where: { productId: record.id } });
+    await prisma.productImage.createMany({
+      data: images.map((photoId, position) => ({
+        productId: record.id,
+        url: unsplash(photoId),
+        altText:
+          position === 0 ? product.name : `${product.name} — alternate view`,
+        position,
+      })),
     });
-    if (existingImages === 0) {
-      await prisma.productImage.createMany({
-        data: [
-          {
-            productId: record.id,
-            url: image(product.slug),
-            altText: product.name,
-            position: 0,
-          },
-          {
-            productId: record.id,
-            url: image(`${product.slug}-alt`),
-            altText: `${product.name} — alternate view`,
-            position: 1,
-          },
-        ],
-      });
-    }
   }
 
   console.log(

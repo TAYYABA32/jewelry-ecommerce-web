@@ -7,14 +7,16 @@ const BANNERS = [
     subtitle: "Engagement rings and wedding bands, made to be treasured.",
     href: "/shop?occasion=engagement",
     cta: "Shop Bridal",
-    image: "https://picsum.photos/seed/aurelia-bridal/1200/1400",
+    image:
+      "https://images.unsplash.com/photo-1511314766704-a02a2356d128?w=1200&q=80&auto=format&fit=crop",
   },
   {
     title: "Gifts That Last",
     subtitle: "Considered pieces for the moments worth marking.",
     href: "/shop?filter=best-sellers",
     cta: "Shop Gifts",
-    image: "https://picsum.photos/seed/aurelia-gifts/1200/1400",
+    image:
+      "https://images.unsplash.com/photo-1668463876833-339717e58c4c?w=1200&q=80&auto=format&fit=crop",
   },
 ] as const;
 
