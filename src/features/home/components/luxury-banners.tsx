@@ -16,7 +16,7 @@ const BANNERS = [
     href: "/shop?filter=best-sellers",
     cta: "Shop Gifts",
     image:
-      "https://images.unsplash.com/photo-1668463876833-339717e58c4c?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1619545648753-cf664cbbe97a?w=1200&q=80&auto=format&fit=crop",
   },
 ] as const;
 
