@@ -35,7 +35,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
         ) : null}
       </div>
 
-      <div className="mt-4 flex flex-col">
+      <div className="mt-6 flex flex-col">
         <p className="text-[11px] font-medium tracking-[0.15em] text-muted-foreground uppercase">
           {product.category.name}
         </p>

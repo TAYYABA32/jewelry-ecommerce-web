@@ -10,14 +10,15 @@ export function HeroSection() {
   return (
     <section className="relative flex h-[85vh] min-h-[560px] items-center overflow-hidden bg-secondary">
       <Image
-        src="https://images.unsplash.com/photo-1665159882377-385d68d2bdff?w=1800&q=80&auto=format&fit=crop"
-        alt="Diamond chandelier earrings"
+        src="https://images.unsplash.com/photo-1685566971114-be037b7dd34c?w=1800&q=80&auto=format&fit=crop"
+        alt="A woman wearing a sparkling diamond choker, holding deep red peonies"
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-70"
+        className="object-cover object-[50%_25%]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div

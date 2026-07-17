@@ -1,5 +1,5 @@
 import { Show, UserButton } from "@clerk/nextjs";
-import { ChevronDown, Heart, Search, ShoppingBag, User } from "lucide-react";
+import { ChevronDown, Heart, Search, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -59,7 +59,7 @@ export function Header() {
           )}
         </nav>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Button
             variant="ghost"
             size="icon"
@@ -99,16 +99,12 @@ export function Header() {
             <UserButton />
           </Show>
           <Show when="signed-out">
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label="Sign in"
-              render={
-                <Link href="/login">
-                  <User className="size-5" />
-                </Link>
-              }
-            />
+            <Link
+              href="/login"
+              className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+            >
+              Sign In
+            </Link>
           </Show>
         </div>
       </div>
