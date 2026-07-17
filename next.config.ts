@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
         hostname: "*.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
+      // Seed/dev placeholder imagery only — remove once real product
+      // photography is uploaded via the admin (Supabase Storage).
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
     ],
   },
 };
