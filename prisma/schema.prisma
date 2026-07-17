@@ -66,19 +66,26 @@ enum NotificationType {
   REVIEW
 }
 
+enum InquiryType {
+  BRIDAL_CONSULTATION
+  CUSTOM_ORDER
+  GENERAL
+  PRESS
+}
+
 // ---------------------------------------------------------------------------
 // User
 // ---------------------------------------------------------------------------
 
 model User {
-  id        String   @id @default(uuid()) @db.Uuid
-  clerkId   String   @unique
-  email     String   @unique
+  id        String  @id @default(uuid()) @db.Uuid
+  clerkId   String  @unique
+  email     String  @unique
   firstName String?
   lastName  String?
   phone     String?
   avatarUrl String?
-  role      Role     @default(CUSTOMER)
+  role      Role    @default(CUSTOMER)
 
   addresses     Address[]
   cart          Cart?
@@ -129,21 +136,21 @@ model Category {
 // ---------------------------------------------------------------------------
 
 model Product {
-  id                String  @id @default(uuid()) @db.Uuid
-  name              String
-  slug              String  @unique
-  sku               String  @unique
-  description       String
-  shortDescription  String?
+  id               String  @id @default(uuid()) @db.Uuid
+  name             String
+  slug             String  @unique
+  sku              String  @unique
+  description      String
+  shortDescription String?
 
   price         Decimal  @db.Decimal(10, 2)
   discountPrice Decimal? @db.Decimal(10, 2)
 
-  material String
+  material  String
   stoneType String?
-  weight   Decimal? @db.Decimal(10, 2)
-  gender   Gender   @default(UNISEX)
-  occasion String?
+  weight    Decimal? @db.Decimal(10, 2)
+  gender    Gender   @default(UNISEX)
+  occasion  String?
 
   stockQuantity Int     @default(0)
   isAvailable   Boolean @default(true)
@@ -446,4 +453,27 @@ model Notification {
   @@index([userId])
   @@index([isRead])
   @@map("notifications")
+}
+
+// ---------------------------------------------------------------------------
+// Consultation Request (Contact page booking form)
+// ---------------------------------------------------------------------------
+
+model ConsultationRequest {
+  id String @id @default(uuid()) @db.Uuid
+
+  name          String
+  email         String
+  phone         String
+  preferredDate DateTime?
+  inquiryType   InquiryType @default(BRIDAL_CONSULTATION)
+  message       String
+
+  isResolved Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+  @@map("consultation_requests")
 }

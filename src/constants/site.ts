@@ -13,4 +13,10 @@ export const SOCIAL_LINKS = [
 ] as const;
 
 export const CONTACT_EMAIL = "concierge@aurelia.com";
-export const CONTACT_PHONE = "+1 (800) 555-0199";
+export const CONTACT_PHONE = "+92 42 3555 0199";
+export const ATELIER_ADDRESS = [
+  "Aurelia House",
+  "14 Empress Boulevard, Gulberg V",
+  "Lahore, Pakistan",
+] as const;
+export const CONCIERGE_HOURS = "By appointment, Tue–Sun, 11am–7pm";
