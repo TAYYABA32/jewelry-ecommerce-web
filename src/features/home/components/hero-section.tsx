@@ -29,22 +29,26 @@ export function HeroSection() {
             className="max-w-xl"
           >
             <p className="text-sm font-medium tracking-[0.2em] text-primary uppercase">
-              The Aurelia Collection
+              The Bridal Heritage
             </p>
             <h1 className="mt-4 font-heading text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
-              Timeless Fine Jewelry, Crafted to Last
+              Regal Masterpieces for Your Forever Day
             </h1>
             <p className="mt-4 max-w-md text-white/80">
-              Ethically sourced diamonds and precious metals, handcrafted into
-              pieces designed to be worn for a lifetime.
+              Handcrafted gold, polki, and premium bridal masterpieces
+              designed to carry forward the rich traditions of royal
+              craftsmanship.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button size="lg" render={<Link href="/shop">Shop Now</Link>} />
+              <Button
+                size="lg"
+                render={<Link href="/shop?occasion=engagement">Explore Bridal</Link>}
+              />
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
-                render={<Link href="/categories">Explore Collections</Link>}
+                render={<Link href="/contact">Book Consultation</Link>}
               />
             </div>
           </motion.div>
