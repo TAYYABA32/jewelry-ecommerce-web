@@ -5,14 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import giftPromoImage from "@/assets/images/gift-promo.jpg";
+import bridalCollageImage from "@/assets/images/bridal-collage.jpg";
 
 export function HeroSection() {
   return (
     <section className="relative flex h-[80vh] min-h-[520px] w-full items-center overflow-hidden">
       <Image
-        src={giftPromoImage}
-        alt="A woman admiring gold jewelry pieces beside wrapped gift boxes"
+        src={bridalCollageImage}
+        alt="A collage of bridal jewelry — a bride in traditional dress, kundan necklace, and gold earrings and bangles"
         fill
         priority
         sizes="100vw"

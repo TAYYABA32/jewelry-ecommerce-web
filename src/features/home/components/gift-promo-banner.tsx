@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-import bridalCollageImage from "@/assets/images/bridal-collage.jpg";
+import giftPromoImage from "@/assets/images/gift-promo.jpg";
 
 export function GiftPromoBanner() {
   return (
     <section className="relative isolate flex h-[70vh] min-h-[420px] w-full items-center overflow-hidden">
       <Image
-        src={bridalCollageImage}
-        alt="A collage of bridal jewelry — a bride in traditional dress, kundan necklace, and gold earrings and bangles"
+        src={giftPromoImage}
+        alt="A woman admiring gold jewelry pieces beside wrapped gift boxes"
         fill
         sizes="100vw"
         className="object-cover object-center"
