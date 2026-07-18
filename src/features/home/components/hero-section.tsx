@@ -27,13 +27,13 @@ export function HeroSection() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-xl"
         >
-          <p className="font-heading text-sm font-semibold tracking-widest text-[#D4AF37] uppercase">
+          <p className="font-heading text-sm font-semibold tracking-widest text-[#E3CD98] uppercase">
             The Bridal Heritage
           </p>
-          <h1 className="mt-4 font-heading text-4xl font-semibold text-[#FAF6EF] [text-shadow:0_2px_16px_rgb(0_0_0_/_45%)] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-heading text-4xl font-semibold text-white [text-shadow:0_2px_16px_rgb(0_0_0_/_45%)] sm:text-5xl lg:text-6xl">
             Regal Masterpieces for Your Forever Day
           </h1>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#E4E0D8]">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-white/85">
             Handcrafted gold, polki, and premium bridal masterpieces
             designed to carry forward the rich traditions of royal
             craftsmanship.
@@ -41,7 +41,7 @@ export function HeroSection() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Button
               size="lg"
-              className="bg-[#D4AF37] text-[#111111] hover:bg-[#c9a227]"
+              className="bg-primary text-white hover:bg-primary/90"
               render={<Link href="/shop?occasion=engagement">Explore Bridal</Link>}
             />
             <Button
