@@ -18,8 +18,7 @@ export function HeroSection() {
         sizes="100vw"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
 
       <div className="relative px-6 sm:px-10 lg:px-14">
         <motion.div
@@ -28,13 +27,13 @@ export function HeroSection() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-xl"
         >
-          <p className="text-sm font-medium tracking-[0.2em] text-primary uppercase">
+          <p className="font-heading text-sm font-semibold tracking-widest text-[#D4AF37] uppercase">
             The Bridal Heritage
           </p>
-          <h1 className="mt-4 font-heading text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-heading text-4xl font-semibold text-[#FAF6EF] [text-shadow:0_2px_16px_rgb(0_0_0_/_45%)] sm:text-5xl lg:text-6xl">
             Regal Masterpieces for Your Forever Day
           </h1>
-          <p className="mt-4 max-w-md text-white/80">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#E4E0D8]">
             Handcrafted gold, polki, and premium bridal masterpieces
             designed to carry forward the rich traditions of royal
             craftsmanship.
@@ -42,12 +41,13 @@ export function HeroSection() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Button
               size="lg"
+              className="bg-[#D4AF37] text-[#111111] hover:bg-[#c9a227]"
               render={<Link href="/shop?occasion=engagement">Explore Bridal</Link>}
             />
             <Button
               size="lg"
               variant="outline"
-              className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              className="border border-white/60 bg-transparent text-white transition-colors duration-300 hover:bg-white/15 hover:text-white"
               render={<Link href="/contact">Book Consultation</Link>}
             />
           </div>
