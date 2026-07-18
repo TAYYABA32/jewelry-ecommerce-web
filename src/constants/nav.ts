@@ -39,7 +39,7 @@ export const FOOTER_NAV = [
   {
     title: "Support",
     links: [
-      { label: "My Orders", href: "/orders" },
+      { label: "My Orders", href: "/my-orders" },
       { label: "Wishlist", href: "/wishlist" },
       { label: "Addresses", href: "/addresses" },
     ],
@@ -48,7 +48,7 @@ export const FOOTER_NAV = [
     title: "Legal",
     links: [
       { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms of Service", href: "/terms" },
+      { label: "Terms of Service", href: "/terms-of-service" },
     ],
   },
 ] as const;
