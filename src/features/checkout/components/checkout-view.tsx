@@ -29,20 +29,37 @@ import {
 } from "@/features/cart/store/cart-store";
 import { formatPrice } from "@/utils/format-price";
 
+function formatCardNumber(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 19);
+  return digits.replace(/(.{4})/g, "$1 ").trim();
+}
+
+function formatCardExpiry(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 4);
+  if (digits.length < 3) return digits;
+  return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+}
+
+function formatCardCvc(value: string) {
+  return value.replace(/\D/g, "").slice(0, 4);
+}
+
 export function CheckoutView() {
   const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
   const subtotal = useCartTotal();
   const [isPending, startTransition] = useTransition();
   const [rootError, setRootError] = useState<string | null>(null);
-  const [confirmedOrderNumber, setConfirmedOrderNumber] = useState<
-    string | null
-  >(null);
+  const [confirmedOrder, setConfirmedOrder] = useState<{
+    orderNumber: string;
+    paymentMethod: "COD" | "CARD";
+  } | null>(null);
 
   const {
     register,
     control,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<CheckoutDetailsValues>({
     resolver: zodResolver(checkoutDetailsSchema),
@@ -55,14 +72,29 @@ export function CheckoutView() {
       postalCode: "",
       country: "Pakistan",
       paymentMethod: "COD",
+      cardNumber: "",
+      cardExpiry: "",
+      cardCvc: "",
     },
   });
+
+  const paymentMethod = watch("paymentMethod");
 
   const onSubmit = (values: CheckoutDetailsValues) => {
     setRootError(null);
     startTransition(async () => {
+      // Card number/expiry/CVC are validated above but deliberately never
+      // sent to the server — no live payment gateway is configured, so
+      // this is a simulated card charge, not a real one.
       const result = await submitCheckout({
-        ...values,
+        fullName: values.fullName,
+        phone: values.phone,
+        addressLine1: values.addressLine1,
+        city: values.city,
+        state: values.state,
+        postalCode: values.postalCode,
+        country: values.country,
+        paymentMethod: values.paymentMethod,
         items: items.map((item) => ({
           productId: item.productId,
           quantity: item.quantity,
@@ -70,7 +102,10 @@ export function CheckoutView() {
       });
 
       if (result.success) {
-        setConfirmedOrderNumber(result.orderNumber);
+        setConfirmedOrder({
+          orderNumber: result.orderNumber,
+          paymentMethod: values.paymentMethod,
+        });
         clearCart();
       } else {
         setRootError(
@@ -81,7 +116,7 @@ export function CheckoutView() {
     });
   };
 
-  if (confirmedOrderNumber) {
+  if (confirmedOrder) {
     return (
       <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-24 text-center">
         <p className="text-sm font-medium tracking-[0.2em] text-primary uppercase">
@@ -90,16 +125,29 @@ export function CheckoutView() {
         <p className="mt-4 font-heading text-2xl font-semibold text-foreground">
           Thank you for your order
         </p>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Order number{" "}
-          <span className="font-medium text-foreground">
-            {confirmedOrderNumber}
-          </span>
-        </p>
-        <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-          We&apos;ll contact you shortly to confirm delivery details for your
-          Cash on Delivery order.
-        </p>
+        {confirmedOrder.paymentMethod === "CARD" ? (
+          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+            We&apos;ve successfully processed your digital card payment for
+            order number{" "}
+            <span className="font-medium text-foreground">
+              {confirmedOrder.orderNumber}
+            </span>
+            .
+          </p>
+        ) : (
+          <>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Order number{" "}
+              <span className="font-medium text-foreground">
+                {confirmedOrder.orderNumber}
+              </span>
+            </p>
+            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+              We&apos;ll contact you shortly to confirm delivery details for
+              your Cash on Delivery order.
+            </p>
+          </>
+        )}
         <Button className="mt-6" render={<Link href="/shop">Continue Shopping</Link>} />
       </div>
     );
@@ -246,6 +294,90 @@ export function CheckoutView() {
             )}
           />
         </div>
+
+        {paymentMethod === "CARD" ? (
+          <div className="space-y-5 rounded-lg border border-border p-5">
+            <div className="space-y-1.5">
+              <Label htmlFor="cardNumber">Card Number</Label>
+              <Controller
+                control={control}
+                name="cardNumber"
+                render={({ field }) => (
+                  <Input
+                    id="cardNumber"
+                    inputMode="numeric"
+                    autoComplete="cc-number"
+                    placeholder="1234 5678 9012 3456"
+                    value={field.value ?? ""}
+                    onChange={(e) =>
+                      field.onChange(formatCardNumber(e.target.value))
+                    }
+                    onBlur={field.onBlur}
+                  />
+                )}
+              />
+              {errors.cardNumber ? (
+                <p className="text-sm text-destructive">
+                  {errors.cardNumber.message}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="grid grid-cols-2 gap-5">
+              <div className="space-y-1.5">
+                <Label htmlFor="cardExpiry">Expiration Date (MM/YY)</Label>
+                <Controller
+                  control={control}
+                  name="cardExpiry"
+                  render={({ field }) => (
+                    <Input
+                      id="cardExpiry"
+                      inputMode="numeric"
+                      autoComplete="cc-exp"
+                      placeholder="MM/YY"
+                      value={field.value ?? ""}
+                      onChange={(e) =>
+                        field.onChange(formatCardExpiry(e.target.value))
+                      }
+                      onBlur={field.onBlur}
+                    />
+                  )}
+                />
+                {errors.cardExpiry ? (
+                  <p className="text-sm text-destructive">
+                    {errors.cardExpiry.message}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="space-y-1.5">
+                <Label htmlFor="cardCvc">CVC</Label>
+                <Controller
+                  control={control}
+                  name="cardCvc"
+                  render={({ field }) => (
+                    <Input
+                      id="cardCvc"
+                      inputMode="numeric"
+                      autoComplete="cc-csc"
+                      placeholder="123"
+                      value={field.value ?? ""}
+                      onChange={(e) =>
+                        field.onChange(formatCardCvc(e.target.value))
+                      }
+                      onBlur={field.onBlur}
+                    />
+                  )}
+                />
+                {errors.cardCvc ? (
+                  <p className="text-sm text-destructive">
+                    {errors.cardCvc.message}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        ) : null}
 
         {rootError ? (
           <p className="text-sm text-destructive">{rootError}</p>

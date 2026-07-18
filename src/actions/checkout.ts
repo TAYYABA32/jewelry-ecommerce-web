@@ -123,6 +123,11 @@ export async function submitCheckout(input: unknown) {
       subtotal,
       totalAmount: subtotal,
       paymentMethod,
+      // Card payments are simulated (no live gateway configured yet): no
+      // raw card data ever reaches this action, but the order is marked
+      // paid/confirmed immediately, matching a successful card charge.
+      paymentStatus: paymentMethod === "CARD" ? "PAID" : "PENDING",
+      status: paymentMethod === "CARD" ? "CONFIRMED" : "PENDING",
       items: { create: orderItemsData },
     },
   });
