@@ -24,7 +24,7 @@ export default function ContactPage() {
           <p className="text-sm font-medium tracking-[0.2em] text-primary uppercase">
             By Appointment
           </p>
-          <h1 className="mt-4 font-heading text-4xl font-semibold text-white sm:text-5xl">
+          <h1 className="mt-4 font-heading text-4xl font-semibold text-foreground sm:text-5xl">
             Connect With Us
           </h1>
         </div>

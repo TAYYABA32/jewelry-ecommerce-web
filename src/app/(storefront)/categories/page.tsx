@@ -39,7 +39,7 @@ export default async function CategoriesPage() {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : null}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
             <div className="relative p-6">
               <span className="font-heading text-xl font-medium text-white">
                 {category.name}

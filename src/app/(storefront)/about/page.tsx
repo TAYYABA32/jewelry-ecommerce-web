@@ -18,7 +18,7 @@ export default function AboutPage() {
           <p className="text-sm font-medium tracking-[0.2em] text-primary uppercase">
             Est. in Tradition
           </p>
-          <h1 className="mt-4 font-heading text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-heading text-4xl font-semibold text-foreground sm:text-5xl lg:text-6xl">
             The House of Aurelia
           </h1>
         </div>

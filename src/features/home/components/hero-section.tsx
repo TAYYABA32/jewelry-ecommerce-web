@@ -18,7 +18,7 @@ export function HeroSection() {
         sizes="100vw"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/8 to-transparent" />
 
       <div className="relative px-6 sm:px-10 lg:px-14">
         <motion.div

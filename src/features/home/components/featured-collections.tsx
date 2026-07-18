@@ -35,7 +35,7 @@ export async function FeaturedCollections() {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : null}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
             <span className="relative p-4 font-heading text-lg font-medium text-white">
               {category.name}
             </span>
