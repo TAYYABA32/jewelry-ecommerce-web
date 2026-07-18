@@ -28,7 +28,13 @@ export function ProductCard({ product }: { product: ProductCardData }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : null}
-        <WishlistButton productName={product.name} />
+        <WishlistButton
+          productId={product.id}
+          slug={product.slug}
+          name={product.name}
+          image={primaryImage?.url ?? ""}
+          price={Number(hasDiscount ? product.discountPrice! : product.price)}
+        />
         <AddToCartButton
           productId={product.id}
           slug={product.slug}

@@ -1,25 +1,39 @@
 "use client";
 
 import { Heart } from "lucide-react";
-import { useState } from "react";
 
+import {
+  useIsWishlisted,
+  useWishlistStore,
+} from "@/features/wishlist/store/wishlist-store";
 import { cn } from "@/lib/utils";
 
-// Visual-only for now — persists nothing. Wiring to the Wishlist model
-// (and Clerk-authenticated state) lands with the Wishlist feature.
-export function WishlistButton({ productName }: { productName: string }) {
-  const [saved, setSaved] = useState(false);
+export function WishlistButton({
+  productId,
+  slug,
+  name,
+  image,
+  price,
+}: {
+  productId: string;
+  slug: string;
+  name: string;
+  image: string;
+  price: number;
+}) {
+  const saved = useIsWishlisted(productId);
+  const toggleItem = useWishlistStore((state) => state.toggleItem);
 
   return (
     <button
       type="button"
       aria-label={
-        saved ? `Remove ${productName} from wishlist` : `Add ${productName} to wishlist`
+        saved ? `Remove ${name} from wishlist` : `Add ${name} to wishlist`
       }
       aria-pressed={saved}
       onClick={(e) => {
         e.preventDefault();
-        setSaved((prev) => !prev);
+        toggleItem({ productId, slug, name, image, price });
       }}
       className="absolute top-3 right-3 z-10 flex size-8 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur transition-colors hover:text-primary"
     >

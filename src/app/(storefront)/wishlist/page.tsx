@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { WishlistView } from "@/features/wishlist/components/wishlist-view";
 
 export const metadata: Metadata = {
   title: "Wishlist",
@@ -8,11 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function WishlistPage() {
-  return (
-    <PlaceholderPage
-      eyebrow="Your Account"
-      title="Wishlist"
-      description="Pieces you save will be collected here, so you can return to them whenever you're ready."
-    />
-  );
+  return <WishlistView />;
 }

@@ -1,5 +1,5 @@
 import { Show, UserButton } from "@clerk/nextjs";
-import { ChevronDown, Heart, Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -10,13 +10,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CartButton } from "@/features/cart/components/cart-button";
+import { WishlistNavButton } from "@/features/wishlist/components/wishlist-nav-button";
 import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { MAIN_NAV } from "@/constants/nav";
 
-// Wishlist count is still a visual-only placeholder until that
-// feature (with real client-side state) is built in a later step.
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -70,16 +69,7 @@ export function Header() {
               </Link>
             }
           />
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Wishlist"
-            render={
-              <Link href="/wishlist">
-                <Heart className="size-5" />
-              </Link>
-            }
-          />
+          <WishlistNavButton />
           <CartButton />
           <ThemeToggle />
           <Show when="signed-in">
