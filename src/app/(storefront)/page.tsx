@@ -1,7 +1,7 @@
 import { BestSellers } from "@/features/home/components/best-sellers";
 import { FeaturedCollections } from "@/features/home/components/featured-collections";
+import { GiftPromoBanner } from "@/features/home/components/gift-promo-banner";
 import { HeroSection } from "@/features/home/components/hero-section";
-import { LuxuryBanners } from "@/features/home/components/luxury-banners";
 
 export default function HomePage() {
   return (
@@ -9,7 +9,7 @@ export default function HomePage() {
       <HeroSection />
       <FeaturedCollections />
       <BestSellers />
-      <LuxuryBanners />
+      <GiftPromoBanner />
     </>
   );
 }

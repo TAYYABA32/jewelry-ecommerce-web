@@ -93,3 +93,10 @@ export function getTrendingProducts(limit = 8) {
     take: limit,
   });
 }
+
+export function getProductsByIds(ids: string[]) {
+  return prisma.product.findMany({
+    where: { ...activeProduct, id: { in: ids } },
+    include: productCardInclude,
+  });
+}
