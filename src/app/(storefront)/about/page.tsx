@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import bridalHeritagePortrait from "@/assets/images/bridal-heritage-portrait.jpg";
+
 export const metadata: Metadata = {
   title: "About",
   description:
@@ -43,10 +45,11 @@ export default function AboutPage() {
               <p>
                 Our karigars — master craftsmen trained in the same
                 workshops that once served maharajas and begums — spend
-                weeks, sometimes months, on a single piece. Uncut diamonds
-                are set by hand into gold, exactly as they were when polki
-                first adorned royal courts. Nothing is cast in a hurry;
-                nothing leaves our atelier unfinished.
+                weeks, sometimes months, on a single piece, so that every
+                bride who wears an Aurelia heirloom carries more than gold.
+                Uncut diamonds are set by hand, exactly as they were when
+                polki first adorned royal courts, and nothing leaves our
+                atelier unfinished.
               </p>
               <p>
                 We built Aurelia for the bride who wants her jewelry to
@@ -59,11 +62,11 @@ export default function AboutPage() {
 
           <div className="relative aspect-4/5 overflow-hidden rounded-2xl sm:aspect-3/4">
             <Image
-              src="https://images.unsplash.com/photo-1609619742069-f5e18afeef17?w=1000&q=80&auto=format&fit=crop"
-              alt="A goldsmith hand-soldering a piece of fine jewelry in a traditional workshop"
+              src={bridalHeritagePortrait}
+              alt="A bride in traditional red and gold bridal wear, adorned with heirloom polki jewelry"
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"
-              className="object-cover"
+              className="object-cover object-top"
             />
           </div>
         </div>
