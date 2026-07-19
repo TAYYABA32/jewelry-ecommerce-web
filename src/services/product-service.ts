@@ -100,3 +100,10 @@ export function getProductsByIds(ids: string[]) {
     include: productCardInclude,
   });
 }
+
+export function getProductBySlug(slug: string) {
+  return prisma.product.findFirst({
+    where: { ...activeProduct, slug },
+    include: productCardInclude,
+  });
+}
