@@ -20,8 +20,8 @@ export default async function AdminLayout({
   await requireAdmin();
 
   return (
-    <div className="min-h-screen bg-[#FBF9F4]">
-      <header className="flex h-16 items-center justify-between border-b border-border bg-white px-6">
+    <div className="min-h-screen bg-background">
+      <header className="flex h-16 items-center justify-between border-b border-border bg-card px-6">
         <div className="flex items-center gap-8">
           <span className="font-heading text-lg font-semibold text-foreground">
             Aurelia Admin
@@ -38,6 +38,12 @@ export default async function AdminLayout({
               className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
             >
               Orders
+            </Link>
+            <Link
+              href="/admin/inquiries"
+              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+            >
+              Inquiries
             </Link>
           </nav>
         </div>
