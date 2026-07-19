@@ -38,7 +38,7 @@ export function AddressCard({
   };
 
   return (
-    <div className="rounded-2xl border border-[#D4AF37]/30 bg-white p-6">
+    <div className="rounded-2xl border border-[#D4AF37]/30 bg-card p-6">
       <p className="font-heading text-base font-semibold text-foreground">
         {address.fullName}
       </p>

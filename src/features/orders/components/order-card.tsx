@@ -14,7 +14,7 @@ export function OrderCard({ order }: { order: OrderWithItems }) {
   });
 
   return (
-    <div className="rounded-2xl border border-[#D4AF37]/30 bg-white p-6 sm:p-8">
+    <div className="rounded-2xl border border-[#D4AF37]/30 bg-card p-6 sm:p-8">
       <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
         <div>
           <p className="font-heading text-lg font-semibold text-foreground">

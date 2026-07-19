@@ -31,7 +31,7 @@ export function WishlistView() {
 
   if (items.length === 0) {
     return (
-      <div className="flex min-h-[70vh] flex-col items-center justify-center bg-[#FBF9F4] px-4 text-center">
+      <div className="flex min-h-[70vh] flex-col items-center justify-center bg-background px-4 text-center">
         <h1 className="font-heading text-4xl font-semibold text-foreground sm:text-5xl">
           Wishlist
         </h1>
@@ -47,7 +47,7 @@ export function WishlistView() {
   }
 
   return (
-    <div className="bg-[#FBF9F4]">
+    <div className="bg-background">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <header className="border-b border-border pb-6">
           <p className="text-sm font-medium tracking-[0.2em] text-primary uppercase">

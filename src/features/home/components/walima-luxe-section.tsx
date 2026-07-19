@@ -4,7 +4,7 @@ import walimaLuxeImage from "@/assets/images/walima-luxe.jpg";
 
 export function WalimaLuxeSection() {
   return (
-    <section className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 bg-white px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
+    <section className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 bg-background px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
       <div className="relative aspect-4/5 w-full overflow-hidden lg:aspect-3/4">
         <Image
           src={walimaLuxeImage}

@@ -24,7 +24,7 @@ export default async function MyOrdersPage() {
   const firstName = clerkUser?.firstName;
 
   return (
-    <div className="bg-[#FBF9F4]">
+    <div className="bg-background">
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <header className="border-b border-border pb-6">
           <p className="text-sm font-medium tracking-[0.2em] text-primary uppercase">
