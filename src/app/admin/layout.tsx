@@ -1,8 +1,9 @@
 import { UserButton } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { AdminSidebar } from "@/features/admin/shared/admin-sidebar";
 import { requireAdmin } from "@/lib/admin-auth";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export const metadata: Metadata = {
   title: {
@@ -20,36 +21,16 @@ export default async function AdminLayout({
   await requireAdmin();
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="flex h-16 items-center justify-between border-b border-border bg-card px-6">
-        <div className="flex items-center gap-8">
-          <span className="font-heading text-lg font-semibold text-foreground">
-            Aurelia Admin
-          </span>
-          <nav className="flex items-center gap-6">
-            <Link
-              href="/admin/products"
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-            >
-              Products
-            </Link>
-            <Link
-              href="/admin/orders"
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-            >
-              Orders
-            </Link>
-            <Link
-              href="/admin/inquiries"
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-            >
-              Inquiries
-            </Link>
-          </nav>
-        </div>
-        <UserButton />
-      </header>
-      <main className="mx-auto max-w-6xl px-6 py-10">{children}</main>
+    <div className="flex min-h-screen bg-background">
+      <AdminSidebar />
+
+      <div className="flex-1">
+        <header className="flex h-16 items-center justify-end gap-3 border-b border-border bg-card px-6">
+          <ThemeToggle />
+          <UserButton />
+        </header>
+        <main className="mx-auto max-w-6xl px-6 py-10">{children}</main>
+      </div>
     </div>
   );
 }
