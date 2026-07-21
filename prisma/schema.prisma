@@ -456,6 +456,22 @@ model Notification {
 }
 
 // ---------------------------------------------------------------------------
+// Newsletter Subscriber (footer signup)
+// ---------------------------------------------------------------------------
+
+model NewsletterSubscriber {
+  id    String  @id @default(uuid()) @db.Uuid
+  email String  @unique
+  isActive Boolean @default(true)
+
+  subscribedAt   DateTime  @default(now())
+  unsubscribedAt DateTime?
+
+  @@index([email])
+  @@map("newsletter_subscribers")
+}
+
+// ---------------------------------------------------------------------------
 // Consultation Request (Contact page booking form)
 // ---------------------------------------------------------------------------
 

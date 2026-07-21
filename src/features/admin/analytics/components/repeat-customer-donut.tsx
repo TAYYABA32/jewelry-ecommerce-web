@@ -4,17 +4,17 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 const SIZE = 160;
 
-export function FulfillmentDonut({
+export function RepeatCustomerDonut({
   rate,
-  delivered,
-  total,
+  repeatCustomers,
+  totalCustomers,
 }: {
   rate: number;
-  delivered: number;
-  total: number;
+  repeatCustomers: number;
+  totalCustomers: number;
 }) {
   const data = [
-    { name: "Delivered", value: rate },
+    { name: "Repeat", value: rate },
     { name: "Remaining", value: 100 - rate },
   ];
 
@@ -42,11 +42,11 @@ export function FulfillmentDonut({
           <span className="font-heading text-2xl font-semibold text-foreground">
             {rate}%
           </span>
-          <span className="text-xs text-muted-foreground">Fulfilled</span>
+          <span className="text-xs text-muted-foreground">Repeat</span>
         </div>
       </div>
       <p className="mt-2 text-sm text-muted-foreground">
-        {delivered} of {total} orders delivered
+        {repeatCustomers} of {totalCustomers} customers ordered more than once
       </p>
     </div>
   );

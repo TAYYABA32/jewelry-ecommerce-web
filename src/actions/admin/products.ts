@@ -138,3 +138,22 @@ export async function deleteProduct(productId: string) {
   revalidatePath("/admin/products");
   return { success: true as const };
 }
+
+export async function updateProductStock(productId: string, quantity: number) {
+  await requireAdmin();
+
+  if (!Number.isInteger(quantity) || quantity < 0) {
+    return {
+      success: false as const,
+      error: "Stock quantity must be a non-negative whole number.",
+    };
+  }
+
+  await prisma.product.update({
+    where: { id: productId },
+    data: { stockQuantity: quantity, isAvailable: quantity > 0 },
+  });
+
+  revalidatePath("/admin/inventory");
+  return { success: true as const };
+}

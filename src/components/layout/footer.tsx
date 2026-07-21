@@ -7,6 +7,7 @@ import {
 } from "@/components/layout/social-icons";
 import { FOOTER_NAV } from "@/constants/nav";
 import { CONTACT_EMAIL, CONTACT_PHONE, SITE_DESCRIPTION } from "@/constants/site";
+import { NewsletterForm } from "@/features/newsletter/components/newsletter-form";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -58,6 +59,18 @@ export function Footer() {
                 </ul>
               </div>
             ))}
+          </div>
+
+          <div className="shrink-0 lg:max-w-xs">
+            <h3 className="font-heading text-sm font-semibold text-foreground">
+              Newsletter
+            </h3>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Be the first to know about new collections and offers.
+            </p>
+            <div className="mt-4">
+              <NewsletterForm />
+            </div>
           </div>
         </div>
 
