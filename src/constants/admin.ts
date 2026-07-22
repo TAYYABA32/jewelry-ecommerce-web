@@ -1,5 +1,3 @@
-export const ADMIN_EMAIL = "humatayyaba53@gmail.com";
-
 export const ADMIN_ORDER_STATUSES = [
   { value: "PENDING", label: "Pending" },
   { value: "CONFIRMED", label: "In Atelier" },

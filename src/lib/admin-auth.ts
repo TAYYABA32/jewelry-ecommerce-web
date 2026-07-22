@@ -1,12 +1,12 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
-import { ADMIN_EMAIL } from "@/constants/admin";
+import { isAdminUser } from "@/lib/admin-access";
 import { prisma } from "@/lib/prisma";
 
-// Access is gated on a single known email, not just "signed in" — an
-// unauthorized signed-in user gets a plain 404, not a redirect, so the
-// existence of /admin isn't revealed to them.
+// Access is gated on an admin allowlist (email in ADMIN_EMAILS, or Clerk
+// publicMetadata.role === "admin"), not on a single hardcoded user — any
+// team member can be granted access without sharing credentials.
 export async function requireAdmin() {
   const { userId } = await auth.protect({
     unauthenticatedUrl: "/login?redirect_url=/admin",
@@ -15,8 +15,8 @@ export async function requireAdmin() {
   const clerkUser = await currentUser();
   const email = clerkUser?.primaryEmailAddress?.emailAddress;
 
-  if (!email || email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
-    notFound();
+  if (!email || !isAdminUser({ email, publicMetadata: clerkUser?.publicMetadata })) {
+    redirect("/access-denied");
   }
 
   return prisma.user.upsert({
